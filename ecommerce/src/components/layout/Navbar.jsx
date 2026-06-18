@@ -1,44 +1,55 @@
 import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
-  const linkStyle = ({ isActive }) =>
-    `px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+  const linkClass = ({ isActive }) =>
+    `px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
       isActive
-        ? "bg-indigo-600 text-white shadow-md"
-        : "text-gray-300 hover:bg-slate-800 hover:text-white"
+        ? "bg-indigo-500/20 text-[#818cf8] border border-indigo-500/30"
+        : "text-slate-500 hover:text-[#818cf8] hover:bg-white/5"
     }`;
 
   return (
-    <nav className="sticky top-0 z-50 bg-slate-900 border-b border-slate-800 shadow-lg">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between h-16">
-          
+    <nav className="sticky top-0 z-50 bg-[#0a0f1e] border-b border-white/5 backdrop-blur-xl">
+      <div className="max-w-[1100px] mx-auto px-8">
+        <div className="h-16 flex items-center justify-between">
+
           {/* Logo */}
-          <h1 className="text-2xl font-bold text-white tracking-wide">
-            Shop<span className="text-indigo-500">Hub</span>
-          </h1>
+          <NavLink
+            to="/"
+            className="text-2xl font-semibold text-white tracking-wide"
+          >
+            Shop<span className="text-[#818cf8]">Hub</span>
+          </NavLink>
 
           {/* Links */}
-          <div className="flex items-center gap-3">
-            <NavLink to="/" className={linkStyle}>
+          <div className="flex items-center gap-2">
+
+            <NavLink to="/" className={linkClass}>
               Home
             </NavLink>
 
-            <NavLink to="/products" className={linkStyle}>
+            <NavLink to="/products" className={linkClass}>
               Products
             </NavLink>
 
             <NavLink
               to="/cart"
-              className="relative px-4 py-2 rounded-lg font-medium text-gray-300 hover:bg-slate-800 hover:text-white transition-all duration-300"
+              className={({ isActive }) =>
+                `relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  isActive
+                    ? "bg-indigo-500/20 text-[#818cf8] border border-indigo-500/30"
+                    : "text-slate-500 hover:text-[#818cf8] hover:bg-white/5"
+                }`
+              }
             >
+              <span>🛒</span>
               Cart
 
-              {/* Cart Badge */}
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+              <span className="absolute -top-2 -right-2 min-w-[18px] h-[18px] px-1 rounded-full bg-[#818cf8] text-white text-[10px] flex items-center justify-center font-semibold">
                 3
               </span>
             </NavLink>
+
           </div>
         </div>
       </div>

@@ -1,99 +1,91 @@
 import { Link } from "react-router-dom";
 
+const hoverStyle = {
+  color: "#64748b", fontSize: "13px", textDecoration: "none",
+  display: "block", marginBottom: "10px",
+  transition: "color 0.2s",
+};
+
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 border-t border-slate-800 mt-auto">
-      <div className="max-w-7xl mx-auto px-6 py-10">
-        
-        <div className="grid md:grid-cols-3 gap-8">
-          
-          {/* Brand */}
-          <div>
-            <h2 className="text-2xl font-bold text-white">
-              Shop<span className="text-indigo-500">Hub</span>
-            </h2>
+    <footer style={{
+      background: "#0a0f1e",
+      borderTop: "1px solid rgba(255,255,255,0.06)",
+      padding: "3rem 2rem 1.5rem",
+    }}>
+      <div style={{
+        maxWidth: "1100px", margin: "0 auto",
+        display: "grid", gridTemplateColumns: "2fr 1fr 1fr",
+        gap: "2rem", marginBottom: "2.5rem",
+      }}>
 
-            <p className="mt-3 text-gray-400 text-sm leading-relaxed">
-              Your one-stop destination for quality products,
-              great deals, and a seamless shopping experience.
-            </p>
+        {/* Brand */}
+        <div>
+          <div style={{ fontSize: "20px", fontWeight: 600, color: "#fff", marginBottom: "10px" }}>
+            Shop<span style={{ color: "#818cf8" }}>Hub</span>
           </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">
-              Quick Links
-            </h3>
-
-            <div className="flex flex-col gap-2">
-              <Link
-                to="/"
-                className="text-gray-400 hover:text-indigo-400 transition"
+          <p style={{ color: "#475569", fontSize: "13px", lineHeight: 1.8, maxWidth: "240px" }}>
+            Quality products, great deals, seamless shopping.
+          </p>
+          <div style={{ display: "flex", gap: "8px", marginTop: "16px" }}>
+            {["𝕏", "ig", "in"].map((s) => (
+              <a key={s} href="#" style={{
+                width: "32px", height: "32px", borderRadius: "8px",
+                background: "rgba(255,255,255,0.05)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                color: "#64748b", fontSize: "12px", textDecoration: "none",
+                transition: "all 0.2s",
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background = "rgba(99,102,241,0.2)"; e.currentTarget.style.color = "#818cf8"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.05)"; e.currentTarget.style.color = "#64748b"; }}
               >
-                Home
-              </Link>
-
-              <Link
-                to="/products"
-                className="text-gray-400 hover:text-indigo-400 transition"
-              >
-                Products
-              </Link>
-
-              <Link
-                to="/cart"
-                className="text-gray-400 hover:text-indigo-400 transition"
-              >
-                Cart
-              </Link>
-            </div>
+                {s}
+              </a>
+            ))}
           </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">
-              Contact
-            </h3>
-
-            <div className="space-y-2 text-gray-400 text-sm">
-              <p>Email: support@shophub.com</p>
-              <p>Phone: +20 100 000 0000</p>
-              <p>Cairo, Egypt</p>
-            </div>
-          </div>
-
         </div>
 
-        {/* Bottom Section */}
-        <div className="border-t border-slate-800 mt-8 pt-6 flex flex-col md:flex-row items-center justify-between">
-          
-          <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} ShopHub. All rights reserved.
-          </p>
-
-          <div className="flex gap-4 mt-4 md:mt-0">
-            <a
-              href="#"
-              className="text-gray-400 hover:text-indigo-400 transition"
+        {/* Links */}
+        <div>
+          <div style={{ color: "#fff", fontSize: "13px", fontWeight: 500, marginBottom: "14px" }}>Shop</div>
+          {[["Home", "/"], ["Products", "/products"], ["Cart", "/cart"]].map(([label, to]) => (
+            <Link key={label} to={to} style={hoverStyle}
+              onMouseEnter={e => e.currentTarget.style.color = "#818cf8"}
+              onMouseLeave={e => e.currentTarget.style.color = "#64748b"}
             >
-              Privacy
-            </a>
+              {label}
+            </Link>
+          ))}
+        </div>
 
-            <a
-              href="#"
-              className="text-gray-400 hover:text-indigo-400 transition"
+        {/* Contact */}
+        <div>
+          <div style={{ color: "#fff", fontSize: "13px", fontWeight: 500, marginBottom: "14px" }}>Contact</div>
+          {["support@shophub.com", "+20 100 000 0000", "Cairo, Egypt"].map((t) => (
+            <p key={t} style={{ color: "#475569", fontSize: "13px", marginBottom: "10px" }}>{t}</p>
+          ))}
+        </div>
+      </div>
+
+      <div style={{
+        maxWidth: "1100px", margin: "0 auto",
+        borderTop: "1px solid rgba(255,255,255,0.06)",
+        paddingTop: "1.25rem",
+        display: "flex", justifyContent: "space-between", alignItems: "center",
+      }}>
+        <p style={{ color: "#334155", fontSize: "12px" }}>
+          © {new Date().getFullYear()} ShopHub. All rights reserved.
+        </p>
+        <div style={{ display: "flex", gap: "1rem" }}>
+          {["Privacy", "Terms", "Support"].map((l) => (
+            <a key={l} href="#" style={{ color: "#334155", fontSize: "12px", textDecoration: "none" }}
+              onMouseEnter={e => e.currentTarget.style.color = "#818cf8"}
+              onMouseLeave={e => e.currentTarget.style.color = "#334155"}
             >
-              Terms
+              {l}
             </a>
-
-            <a
-              href="#"
-              className="text-gray-400 hover:text-indigo-400 transition"
-            >
-              Support
-            </a>
-          </div>
-
+          ))}
         </div>
       </div>
     </footer>
