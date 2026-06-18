@@ -1,25 +1,10 @@
 import { useLoaderData } from "react-router-dom";
 import ProductCard from "../../components/product/ProductCard";
+import ErrorMessage from "../../components/ui/ErrorMessage";
 
 export function ErrorBoundary() {
   return (
-    <div className="flex items-center justify-center min-h-[75vh] px-6">
-      <div className="text-center">
-        <div className="text-6xl mb-6">😕</div>
-        <h2 className="text-3xl font-bold text-slate-800 mb-3">
-          Something went wrong
-        </h2>
-        <p className="text-gray-400 max-w-md mx-auto mb-6">
-          We couldn't load the products. Please try again later.
-        </p>
-        <button
-          onClick={() => window.location.reload()}
-          className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
-        >
-          Try Again
-        </button>
-      </div>
-    </div>
+    <ErrorMessage message="Failed to load products." />
   );
 }
 

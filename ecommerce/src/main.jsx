@@ -26,6 +26,27 @@ const router = createBrowserRouter([
            loader
            };
         }
+      },
+      {
+        path: "products/:id",
+        lazy:async ()=>{
+          const [module, { loader }] = await Promise.all([
+            import("./pages/productDetails/index.jsx"),
+            import("./pages/productDetails/loader.js")
+          ]);
+          return {
+            Component: module.default,
+            ErrorBoundary: module.ErrorBoundary,
+            loader
+          };
+        }
+      },
+      {
+        path: "cart",
+        lazy:async ()=>{
+          const module = await import("./pages/cart/index.jsx");
+          return { Component: module.default };
+        }
       }
     ]
   },

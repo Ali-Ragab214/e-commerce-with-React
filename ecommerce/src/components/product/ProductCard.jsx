@@ -3,7 +3,7 @@ import { useCartStore } from "../../store/cartStore";
 export default
 
 function ProductCard({ product }) {
-  const addItem = useCartStore((s) => s.addItem);
+  const addItem = useCartStore((s) => s.addToCart);
 
   return (
     <div className="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-indigo-200 hover:shadow-xl transition-all duration-300">

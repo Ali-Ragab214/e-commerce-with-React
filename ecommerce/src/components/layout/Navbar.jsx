@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
+import { useCartStore } from "../../store/cartStore";
 
 export default function Navbar() {
+  const cartCount = useCartStore((s) => s.cart.length);
   const linkClass = ({ isActive }) =>
     `px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
       isActive
@@ -45,9 +47,11 @@ export default function Navbar() {
               <span>🛒</span>
               Cart
 
-              <span className="absolute -top-2 -right-2 min-w-[18px] h-[18px] px-1 rounded-full bg-[#818cf8] text-white text-[10px] flex items-center justify-center font-semibold">
-                3
-              </span>
+                {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 min-w-[18px] h-[18px] px-1 rounded-full bg-[#818cf8] text-white text-[10px] flex items-center justify-center font-semibold">
+                  {cartCount}
+                </span>
+                )}
             </NavLink>
 
           </div>
